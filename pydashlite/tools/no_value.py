@@ -1,0 +1,3 @@
+
+class NoValue:
+    pass
