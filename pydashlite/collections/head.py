@@ -27,8 +27,6 @@ def head(iterable: Iterable[T], default=None) -> Optional[T]:
 
 def head(iterable: Union[Iterable[T], Dict[T, Any]], default: Y = None) -> Union[Optional[T], Y]:
     try:
-        r = next(iter(iterable), default)
-    except StopIteration:
+        return next(iter(iterable), default)
+    except:
         return default
-    else:
-        return r
