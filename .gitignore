@@ -6,6 +6,9 @@ __pycache__
 
 test.py
 
+/htmlcov
+.coverage
+
 # Setuptools distribution folder.
 /dist/
 /build/

@@ -4,7 +4,7 @@ from collections import namedtuple
 import pydashlite.collections as pdl
 
 from . import fixtures
-from .fixtures import parametrize
+from .fixtures import parametrize, Object
 
 
 @parametrize('case,expected', [
@@ -64,7 +64,8 @@ def test_merge(case, expected):
     (({}, 'a.b[0].c', 1), {'a': {'b': [{'c': 1}]}}),
     (({}, 'a.b[0][0].c', 1), {'a': {'b': [[{'c': 1}]]}}),
     (({}, 'a', tuple), {'a': tuple}),
-    ((tuple([1, 2, 3]), 0, 5), tuple([1, 2, 3]))
+    ((tuple([1, 2, 3]), 0, 5), tuple([1, 2, 3])),
+    ((Object(a=1), 'a', 2), Object(a=2)),
 ])
 def test_set_(case, expected):
     assert pdl.set_(*case) == expected
@@ -97,7 +98,8 @@ def test_at(case, expected):
     (([1, 2, 3],), 1),
     (([],), None),
     (({"1": 2, 3: 4},), "1"),
-    (({}, 8), 8)
+    (({}, 8), 8),
+    ((1,), None),
 ])
 def test_head(case, expected):
     assert pdl.head(*case) == expected
