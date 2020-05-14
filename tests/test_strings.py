@@ -7,7 +7,10 @@ from .fixtures import parametrize
 
 
 @parametrize('case,expected', [
-    ('foo bar baz', 'fooBarBaz'),
+    ('fooBarBaz', 'fooBarBaz'),
+    ('FooBarBaz', 'fooBarBaz'),
+    ('FOO_BAR BAZ', 'fooBarBaz'),
+    ('FOO BAR_bAz', 'fooBarBAz'),
     ('  foo  bar baz  ', 'fooBarBaz'),
     ('foo__bar_baz', 'fooBarBaz'),
     ('foo-_bar-_-baz', 'fooBarBaz'),
