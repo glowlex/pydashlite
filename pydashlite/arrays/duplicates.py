@@ -1,4 +1,4 @@
-from typing import Dict, Iterable, List, TypeVar, Callable, Hashable, Any
+from typing import Dict, Iterable, List, Optional, TypeVar, Callable, Hashable, Any
 
 from ..tools.no_value import NoValue
 
@@ -7,7 +7,7 @@ VH = TypeVar('VH', bound=Hashable)
 K = TypeVar('K', bound=Hashable)
 
 
-def duplicates(array: Iterable[V], iteratee: Callable[[V], Any] = None) -> List[V]:
+def duplicates(array: Iterable[V], iteratee: Optional[Callable[[V], Any]] = None) -> List[V]:
     res: List[V] = []
     if iteratee is None:
         tmp = list(array)
@@ -16,7 +16,7 @@ def duplicates(array: Iterable[V], iteratee: Callable[[V], Any] = None) -> List[
     else:
         raise ValueError('wrong iteratee')
 
-    array = list(array)
+    array = tuple(array)
     for i, v in enumerate(tmp):
         if v is NoValue:
             continue
@@ -30,7 +30,7 @@ def duplicates(array: Iterable[V], iteratee: Callable[[V], Any] = None) -> List[
     return res
 
 
-def duplicatesHash(array: Iterable[VH], iteratee: Callable[[VH], K] = None) -> List[VH]:
+def duplicatesHash(array: Iterable[VH], iteratee: Optional[Callable[[VH], K]] = None) -> List[VH]:
     res: Dict[Hashable, List[VH]] = {}
     tmp: Dict[Hashable, int] = {}
     if iteratee is None:
