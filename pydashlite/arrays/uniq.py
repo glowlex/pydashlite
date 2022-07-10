@@ -24,7 +24,8 @@ def uniqBy(array: Iterable[T], iteratee: Callable[[T], Any]) -> List[T]:
 
 
 def uniqHash(array: Iterable[X]) -> List[X]:
-    return list(set(array))
+    res = {x: 1 for x in array}
+    return list(res)
 
 
 def uniqHashBy(array: Iterable[X], iteratee: Callable[[X], int]) -> List[X]:
