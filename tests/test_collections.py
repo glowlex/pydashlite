@@ -71,6 +71,22 @@ def test_set_(case, expected):
     assert pdl.set_(*case) == expected
 
 
+@parametrize('case,expected,modValue', [
+    (({"a": [{"b": {"c": 7}}]}, "a.[0].b.c"), True, {"a": [{"b": {}}]}),
+    (({"a": [{"b": {"c": 7}}]}, ["a", 0, "b", "c"]), True, {"a": [{"b": {}}]}),
+    (([1, 2, 3], "[1]"), True, [1, 3]),
+    (({1: 'a', 2: 'b'}, 1), True, {2: 'b'}),
+    (([1, 2, 3], 1), True, [1, 3]),
+    (([1, [2, 3]], [1, 1]), True, [1, [2]]),
+    (([1, 2, 3], "[0][0]"), False, [1, 2, 3]),
+    (([1, 2, 3], "[0][0][0]"), False, [1, 2, 3]),
+    (({'a': {'b': fixtures.Object(a=1, b=2, c=3)}}, ['a', 'b', 'a']), True, {'a': {'b': fixtures.Object(b=2, c=3)}}),
+])
+def test_unset(case, expected, modValue):
+    assert pdl.unset(*case) == expected
+    assert case[0] == modValue
+
+
 @parametrize('case,expected', [
     (([1, 2, 3, 4, 5], 2), [[1, 2], [3, 4], [5]]),
     (([], 2), []),

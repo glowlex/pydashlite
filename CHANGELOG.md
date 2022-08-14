@@ -7,6 +7,7 @@
 ### Features
 - descriptions to functions is added
 - intersectionHash function is added
+- unset function is added
 
 ### Bug Fixes
 - intersection function wrong results with more then 2 args
