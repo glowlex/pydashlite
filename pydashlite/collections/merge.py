@@ -7,8 +7,9 @@ from .set_ import _setBasic
 T = TypeVar('T')
 
 
+def merge(dest: T, src: T, maxDepth=-1, deepCopySrc=False, deepCopyDst=False) -> T:
     '''
-    merges objects inplace or with deepCopySrc=True apply deepcopy on dst|src first
+    merges objects inplace or with deepCopySrc|deepCopyDst=True apply deepcopy on dst|src first
     if end object fields have dict types:
     >>> merge({'characters': [{'name': 'barney'}, {'name': 'fred'}]}, {'characters': [{'age': 36}, {'age': 40}]})
     {'characters': [{'name': 'barney', 'age': 36}, {'name': 'fred', 'age': 40}]}
@@ -24,11 +25,14 @@ T = TypeVar('T')
         {'first': {'c': 1, 'd': 2}}
         maxDepth=-1 - without limitation
     :param deepCopySrc:
+    :param deepCopyDst:
         make copy.deepcopy before operations
     '''
     if maxDepth == 0:
         return src
 
+    if deepCopyDst:
+        dest = copy.deepcopy(dest)
     if deepCopySrc:
         src = copy.deepcopy(src)
 
