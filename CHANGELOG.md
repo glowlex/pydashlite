@@ -2,7 +2,7 @@
 
 
 
-## [0.1.4] - 2022-08-14
+## [0.1.5] - 2022-08-14
 ---
 ### Features
 - descriptions to functions is added
@@ -15,6 +15,9 @@
 ### Chore
 - typings updates
 - uniqHash preserves order
+
+## [0.1.4] - 2022-08-14
+skipped
 
 ## [0.1.3] - 2022-01-08
 ---
