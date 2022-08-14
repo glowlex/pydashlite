@@ -44,3 +44,21 @@ def intersection(array: Sequence[T], *others: Sequence[T]) -> List[T]:
             del res[ix]
     t = sorted(res.values(), key=lambda x: x[1])
     return [x[0] for x in t]
+
+
+def intersectionHash(array: Iterable[X], *others: Iterable[X]) -> List[X]:
+    '''
+    result of intersectionHash(array1, array2) is similar to set(array1) & set(array2) but preserves order
+    >>> intersectionHash([1, 2, 3], [1, 2], [2])
+    [2]
+    >>> intersectionHash([3, 1], [1, 2, 3])
+    [3, 1]
+    '''
+    chunks = [array, *others]
+    if len(chunks) == 1:
+        return list(array)
+    keys = set(array)
+    for c in others:
+        keys &= set(c)
+    res = {v: 1 for v in uniqHash(flatten(chunks)) if v in keys}
+    return list(res.keys())
