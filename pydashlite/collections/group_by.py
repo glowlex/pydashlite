@@ -1,4 +1,4 @@
-from typing import Union, Iterable, List, Callable, Any, Hashable, Dict, TypeVar, overload
+from typing import Optional, Union, Iterable, List, Callable, Any, Hashable, Dict, TypeVar, overload
 from .get import get
 
 V = TypeVar('V')
@@ -12,10 +12,12 @@ def groupBy(obj: Dict[K, V], iteratee: Union[Callable[[V], Y], Any]) -> Dict[Y, 
 
 
 @overload
-def groupBy(obj: Iterable[V], iteratee: Union[Callable[[V], Y], Any] = None) -> Dict[Y, List[V]]:
+def groupBy(obj: Iterable[V], iteratee: Optional[Union[Callable[[V], Y], Any]] = None) -> Dict[Y, List[V]]:
     ...
 
 
+def groupBy(obj: Union[Dict[K, V], Iterable[V]],
+            iteratee: Optional[Union[Callable[[V], Y], Any]] = None) -> Dict[Y, List[V]]:
     '''
     creates an object composed of keys generated from the values itself
     or results of running each element thru iteratee
@@ -40,8 +42,9 @@ def groupBy(obj: Iterable[V], iteratee: Union[Callable[[V], Y], Any] = None) -> 
         if not callable(iteratee):
             it = iteratee
 
-            def iteratee(x: V) -> Y:
+            def iteratee1(x: V) -> Y:
                 return get(x, it)
+            iteratee = iteratee1
         for v in values:
             elems = res.setdefault(iteratee(v), [])
             elems.append(v)
