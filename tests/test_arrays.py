@@ -8,7 +8,9 @@ from .fixtures import parametrize
 
 @parametrize('case,expected', [
     (([1, 2, 3, 2, 1, 5, 6, 5, 5, 5],), [1, 2, 5]),
-    ((['A', 'b', 'C', 'a', 'B', 'c'], lambda letter: letter.lower()), ['a', 'B', 'c'])
+    ((['A', 'b', 'C', 'a', 'B', 'c'], lambda letter: letter.lower()), ['a', 'B', 'c']),
+    ((['A', 'b', 'C', 'c', 'a', 'B'], lambda letter: letter.lower()), ['a', 'B', 'c']),
+    ((['A', 'b', 'a', 'B', 'b'], lambda letter: letter.lower()), ['a', 'b']),
 ])
 def test_duplicates_hash(case, expected):
     assert pdl.duplicatesHash(*case) == expected
@@ -17,6 +19,8 @@ def test_duplicates_hash(case, expected):
 @parametrize('case,expected', [
     (([1, 2, 3, 2, 1, 5, 6, 5, 5, 5],), [1, 2, 5]),
     ((['A', 'b', 'C', 'a', 'B', 'c'], lambda letter: letter.lower()), ['a', 'B', 'c']),
+    ((['A', 'b', 'C', 'c', 'a', 'B'], lambda letter: letter.lower()), ['a', 'B', 'c']),
+    ((['A', 'b', 'a', 'B', 'b'], lambda letter: letter.lower()), ['a', 'b']),
     (([{1: 2}, {1: 3}, {1: 2}],), [{1: 2}])
 ])
 def test_duplicates(case, expected):
