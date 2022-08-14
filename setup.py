@@ -2,11 +2,11 @@ from setuptools import setup, find_packages
 
 setup(
     name='pydashlite',
-    version='0.1.3',
+    version='0.1.4',
     description='Simple tools similar to pydash, but more specific and faster.',
     url='https://github.com/glowlex/pydashlite',
     author='glowlex',
-    author_email='glowlex@yandex.ru',
+    author_email='antonioavocado777@gmail.com',
     license='MIT',
     packages=find_packages(exclude=['tests']),
     zip_safe=False,
