@@ -8,6 +8,19 @@ K = TypeVar('K', bound=Hashable)
 
 
 def duplicates(array: Iterable[V], iteratee: Optional[Callable[[V], Any]] = None) -> List[V]:
+    '''
+    returns list containing the last duplicate of each non unique value\n
+    compares with == statement, suitable for unhashable types\n
+    preserves order
+    >>> duplicates([1, 1, 2, 3])
+    [1]
+    >>> duplicates([1, 2, 2, 1])
+    [1, 2]
+    >>> duplicates(['A', 'b', 'C', 'a', 'B', 'c', 'C'], lambda x: x.lower())
+    ['a', 'B', 'C']
+    >>> duplicates([[1], [1], [2], 3])
+    [[1]]
+    '''
     res: List[V] = []
     if iteratee is None:
         tmp = list(array)
@@ -31,6 +44,17 @@ def duplicates(array: Iterable[V], iteratee: Optional[Callable[[V], Any]] = None
 
 
 def duplicatesHash(array: Iterable[VH], iteratee: Optional[Callable[[VH], K]] = None) -> List[VH]:
+    '''
+    returns list containing the last duplicate of each non unique value\n
+    only for hashable types\n
+    preserves order
+    >>> duplicates([1, 1, 2, 3])
+    [1]
+    >>> duplicates([1, 2, 2, 1])
+    [1, 2]
+    >>> duplicates(['A', 'b', 'C', 'a', 'B', 'c'], lambda x: x.lower())
+    ['a', 'B', 'c']
+    '''
     res: Dict[Hashable, List[VH]] = {}
     tmp: Dict[Hashable, int] = {}
     if iteratee is None:

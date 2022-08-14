@@ -7,6 +7,12 @@ Y = TypeVar('Y', bound=Hashable)
 
 
 def groupListBy(arr: Iterable[V], iteratee: Union[Callable[[V], Y], Any] = None) -> Dict[Y, List[V]]:
+    '''
+    >>> groupListBy([1, 2, 3, 1])
+    {1: [1, 1], 2: [2], 3: [3]}
+    >>> groupListBy([1, 2, 3, 1, 4], lambda x: x>2)
+    {False: [1, 2, 1], True: [3, 4]}
+    '''
     res: Dict[Y, List[V]] = {}
     if iteratee is None:
         for v in arr:

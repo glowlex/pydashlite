@@ -6,4 +6,8 @@ T = TypeVar('T')
 
 
 def concat(*arrays: Iterable[T]) -> List[T]:
+    '''
+    >>> concat([1, 2], [3, 4], [5])
+    [1, 2, 3, 4, 5]
+    '''
     return flatten(arrays)

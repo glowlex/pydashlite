@@ -18,4 +18,11 @@ def at(obj: Iterable[Any], paths: Iterable[Iterable[K]]) -> List[Any]:
 
 
 def at(obj: Any, paths: Iterable[Any]) -> List[Any]:
+    """
+    returns a list of values located in the in given paths
+    >>> at([1, 2, 3], [0, 2])
+    [1, 3]
+    >>> at({'one': {'two': {'three': 4}, 4: 8}}, ['one.two.three', ['one', 4], 2])
+    [4, 8, None]
+    """
     return [get(obj, p) for p in paths]
