@@ -7,6 +7,7 @@ from ..tools import NoValue, get_path_array
 T = TypeVar('T')
 
 
+def set_(obj: T, path: Union[List[Hashable], Hashable], value: Any, deep_copy=False) -> T:
     '''
     sets the value at path of object
     >>> set_({}, ['one', 'two'], 1)
