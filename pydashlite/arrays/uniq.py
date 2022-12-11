@@ -46,7 +46,7 @@ def uniqHash(array: Iterable[X]) -> List[X]:
     return list(res)
 
 
-def uniqHashBy(array: Iterable[X], iteratee: Callable[[X], int]) -> List[X]:
+def uniqHashBy(array: Iterable[T], iteratee: Callable[[T], Hashable]) -> List[T]:
     '''
     only for hashable types\n
     preserves order
