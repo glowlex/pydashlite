@@ -34,6 +34,8 @@ def head(iterable: Union[Iterable[T], Dict[T, Any]], default: Optional[Y] = None
     None
     >>> head({"a": 1})
     'a'
+    >>> head({"a": 1, "b": 2}.values())
+    1
     '''
     try:
         return next(iter(iterable), default)
