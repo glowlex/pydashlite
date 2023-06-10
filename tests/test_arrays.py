@@ -155,3 +155,10 @@ def test_concat(case, expected):
 ])
 def test_sum_by(case, expected):
     assert pdl.sumBy(*case) == expected
+
+
+@parametrize('case,expected', [
+    (([0, 1, [], [2], None, '', 'a'],), [1, [2], 'a']),
+])
+def test_removeEmpty(case, expected):
+    assert pdl.removeEmpty(*case) == expected
