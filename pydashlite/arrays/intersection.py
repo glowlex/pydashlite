@@ -10,7 +10,8 @@ X = TypeVar('X', bound=Hashable)
 def intersection(array: Sequence[T], *others: Sequence[T]) -> List[T]:
     '''
     compares with == statement, suitable for unhashable types\n
-    preserves order
+    preserves order\n
+    returns first unique elements
     >>> intersection([1, 2, 3], [1, 2], [2])
     [2]
     >>> intersection([3, 1], [1, 2, 3])
@@ -48,7 +49,8 @@ def intersection(array: Sequence[T], *others: Sequence[T]) -> List[T]:
 
 def intersectionHash(array: Iterable[X], *others: Iterable[X]) -> List[X]:
     '''
-    result of intersectionHash(array1, array2) is similar to set(array1) & set(array2) but preserves order
+    result of intersectionHash(array1, array2) is similar to set(array1) & set(array2) but preserves order\n
+    returns first unique elements
     >>> intersectionHash([1, 2, 3], [1, 2], [2])
     [2]
     >>> intersectionHash([3, 1], [1, 2, 3])

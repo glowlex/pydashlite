@@ -7,7 +7,8 @@ X = TypeVar('X', bound=Hashable)
 def uniq(array: Iterable[T]) -> List[T]:
     '''
     compares with == statement, suitable for unhashable types\n
-    preserves order
+    preserves order\n
+    returns first unique elements
     >>> uniq([1, 2, 2, [3]])
     [1, 2, [3]]
     '''
@@ -21,7 +22,8 @@ def uniq(array: Iterable[T]) -> List[T]:
 def uniqBy(array: Iterable[T], iteratee: Callable[[T], Any]) -> List[T]:
     '''
     compares with == statement, suitable for unhashable types\n
-    preserves order
+    preserves order\n
+    returns first unique elements
     >>> uniqBy([1, 2, 2, [3]], lambda x: x)
     [1, 2, [3]]
     '''
@@ -38,7 +40,8 @@ def uniqBy(array: Iterable[T], iteratee: Callable[[T], Any]) -> List[T]:
 def uniqHash(array: Iterable[X]) -> List[X]:
     '''
     only for hashable types\n
-    preserves order
+    preserves order\n
+    returns last unique elements
     >>> uniqHash([1, 2, 2, 3])
     [1, 2, 3]
     '''
@@ -49,7 +52,8 @@ def uniqHash(array: Iterable[X]) -> List[X]:
 def uniqHashBy(array: Iterable[T], iteratee: Callable[[T], Hashable]) -> List[T]:
     '''
     only for hashable types\n
-    preserves order
+    preserves order\n
+    returns last unique elements
     >>> uniqHashBy([[1], [2], [2], [3]], lambda x: x[0])
     [[1], [2], [3]]
     '''
