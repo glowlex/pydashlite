@@ -12,21 +12,19 @@ def merge(dest: T, src: T, maxDepth=-1, deepCopySrc=False, deepCopyDst=False) ->
     merges objects inplace or with deepCopySrc|deepCopyDst=True apply deepcopy on dst|src first
     if end object fields have dict types:
     >>> merge({'characters': [{'name': 'barney'}, {'name': 'fred'}]}, {'characters': [{'age': 36}, {'age': 40}]})
-    {'characters': [{'name': 'barney', 'age': 36}, {'name': 'fred', 'age': 40}]}
+    {'characters': [{'name': 'barney', 'age': 36}, {'name': 'fred', 'age': 40}]}\n
     if end object fields have different types:
     >>> merge({'characters': {'barney': {'age': 36}}}, {'characters': {'barney': [5]}})
     {'characters': {'barney': [5]}}
     >>> merge({'characters': {'barney': {'age': 36}}}, {'characters': {'barney': [5]}})
-    {'characters': {'barney': [5]}}
-    :param maxDepth:
+    {'characters': {'barney': [5]}}\n
+    :param maxDepth: maxDepth=-1 - without limitation\n
         >>> merge({"first": {'a': 1, 'b': 2}}, {'first': {'c': 1, 'd': 2}}, maxDepth=2)
         {'first': {'a': 1, 'b': 2, 'c': 1, 'd': 2}}
         >>> merge({'first': {'second': 3}}, {'first': {'second': 1}}, maxDepth=1)
-        {'first': {'c': 1, 'd': 2}}
-        maxDepth=-1 - without limitation
-    :param deepCopySrc:
-    :param deepCopyDst:
-        make copy.deepcopy before operations
+        {'first': {'second': 1}}\n
+    :param deepCopySrc: make copy.deepcopy before operations
+    :param deepCopyDst: make copy.deepcopy before operations
     '''
     if maxDepth == 0:
         return src

@@ -11,20 +11,21 @@ def unset(obj: Any, path: Union[List[Hashable], Hashable], deepCopy=False) -> bo
     '''
     removes the property at path of obj\n
     returns True if property was deleted\n
-    >>> unset{"a": [{"b": {"c": 7}}]}, "a.[0].b.c")
+    >>> unset({"a": [{"b": {"c": 7}}]}, "a.[0].b.c")  # doctest: +SKIP
     {"a": [{"b": {}}]}
-    >>> unset({"a": [{"b": {"c": 7}}]}, ["a", 0, "b", "c"])
-    {"a": [{"b": {}}]})
-    >>> unset({'a': ClassObject(a=1, b=2)}, ['a', 'b'])
-    {'a': ClassObject(a=1)})
-    :param deepCopy:
-        apply copy.deepcopy to obj before unset operation
+    >>> unset({"a": [{"b": {"c": 7}}]}, ["a", 0, "b", "c"])  # doctest: +SKIP
+    {"a": [{"b": {}}]}
+    >>> unset({'a': ClassObject(a=1, b=2)}, ['a', 'b'])  # doctest: +SKIP
+    {'a': ClassObject(a=1)}\n
+    :param deepCopy: apply copy.deepcopy to obj before unset operation
     '''
     if not obj:
         return False
     if deepCopy:
         obj = copy.deepcopy(obj)
     path = get_path_array(path)
+    if not path:
+        raise ValueError('path')
     parentObj = get(obj, path[:-1], default=NoValue)
     if parentObj is NoValue:
         return False

@@ -13,9 +13,8 @@ def set_(obj: T, path: Union[List[Hashable], Hashable], value: Any, deep_copy=Fa
     >>> set_({}, ['one', 'two'], 1)
     {'one': {'two': 1}}
     >>> set_({'one': {'two': 5, 'three': {}}}, ['one', 'two'], 1)
-    {'one': {'two': 1, 'three': {}}}
-    :param deepCopy:
-        apply copy.deepcopy to obj before set operation
+    {'one': {'two': 1, 'three': {}}}\n
+    :param deepCopy: apply copy.deepcopy to obj before set operation
     '''
     path = get_path_array(path)
     if deep_copy:

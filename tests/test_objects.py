@@ -2,8 +2,8 @@ from collections import namedtuple
 
 import pydashlite.objects as pdl
 
-from . import fixtures
-from .fixtures import parametrize
+from . import conftest
+from .conftest import parametrize
 
 
 @parametrize('case,expected', [

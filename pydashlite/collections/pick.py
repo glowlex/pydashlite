@@ -42,12 +42,11 @@ def pickDeep(obj: Union[List[T], Dict[K, T]], paths: List[K], deepCopy=False) ->
     creates an object composed of the picked object properties
     >>> pickDeep({'a': 1, 'b': 2, 'c': 3}, 'a')
     {'a': 1}
-    >>> pickDeep({'a': {'b': 1, 'c': 2, 'd': 3}}, 'a.b', 'a.d')
+    >>> pickDeep({'a': {'b': 1, 'c': 2, 'd': 3}}, ('a.b', 'a.d'))
     {'a': {'b': 1, 'd': 3}}
-    >>> pickDeep({'a': [{'b': 1}, {'c': 2}, {'d': 3}]}, 'a[0]', 'a[2]')
-    {'a': [{'b': 1}, None, {'d': 3}]}
-    :param deepCopy:
-        apply copy.deepcopy to picked values
+    >>> pickDeep({'a': [{'b': 1}, {'c': 2}, {'d': 3}]}, ('a[0]', 'a[2]'))
+    {'a': [{'b': 1}, None, {'d': 3}]}\n
+    :param deepCopy: apply copy.deepcopy to picked values
     '''
     res: Dict[K, T] = {}
     for path in paths:

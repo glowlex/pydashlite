@@ -1,9 +1,19 @@
 
 
+import math
 import pydashlite.arrays as pdl
 
-from . import fixtures
-from .fixtures import parametrize
+from . import conftest
+from .conftest import parametrize
+
+
+@parametrize('case,expected', [
+    (([4.2, 6.1, 6.4], lambda num: int(math.floor(num))), {4: [4.2], 6: [6.1, 6.4]}),
+    (([{1: 1}, {1: 2}, {1: 2}], lambda x: x[1]), {1: [{1: 1}], 2: [{1: 2}, {1: 2}]}),
+    (([{1: 1}, {1: 2}, {1: 2}], 1), {1: [{1: 1}], 2: [{1: 2}, {1: 2}]}),
+])
+def test_groupBy(case, expected):
+    assert pdl.groupListBy(*case) == expected
 
 
 @parametrize('case,expected', [

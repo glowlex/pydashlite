@@ -14,7 +14,7 @@ def intersection(array: Sequence[T], *others: Sequence[T]) -> List[T]:
     >>> intersection([1, 2, 3], [1, 2], [2])
     [2]
     >>> intersection([3, 1], [1, 2, 3])
-    [1, 3]
+    [3, 1]
     >>> intersection([[1], 2, 3], [[1], [2]])
     [[1]]
     '''
@@ -23,7 +23,7 @@ def intersection(array: Sequence[T], *others: Sequence[T]) -> List[T]:
     if len(chunks) == 1:
         return list(array)
     mn = min([(len(x), i) for i, x in enumerate(chunks)], key=lambda x: x[0])[1]
-    a = chunks[mn]= uniq(chunks[mn])
+    a = chunks[mn] = uniq(chunks[mn])
     for ix, x in enumerate(a):
         checks = 0
         for ic, c in enumerate(chunks):

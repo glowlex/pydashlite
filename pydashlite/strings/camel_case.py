@@ -7,21 +7,21 @@ def camelCase(text: str) -> str:
     '''
     transform string to camelCase format
     >>> camelCase('FooBarBaz')
-    fooBarBaz
+    'fooBarBaz'
     >>> camelCase('FOO_BAR BAZ')
-    fooBarBaz
+    'fooBarBaz'
     >>> camelCase('FOO BAR_bAz')
-    fooBarBAz
+    'fooBarBAz'
     >>> camelCase('  foo  bar baz  ')
-    fooBarBaz
+    'fooBarBaz'
     >>> camelCase('foo__bar_baz')
-    fooBarBaz
+    'fooBarBaz'
     >>> camelCase('foo-_bar-_-baz')
-    fooBarBaz
+    'fooBarBaz'
     >>> camelCase(',foo!bar,baz,')
-    fooBarBaz
+    'fooBarBaz'
     >>> camelCase('--foo.bar;baz')
-    fooBarBaz
+    'fooBarBaz'
     '''
     spl = pat.split(text)
     ns = ''.join(f'{x[:1].capitalize()}{x[1:]}' if x.upper() != x else x.capitalize() for x in spl)

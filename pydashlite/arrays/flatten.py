@@ -8,7 +8,7 @@ V = TypeVar('V')
 def flatten(array: Iterable[Union[V, Iterable[V]]]) -> List[V]:
     """
     equivalent flattenDepth(arr, depth=1)
-    >>> flatten([[1, 2], [3, 4])
+    >>> flatten([[1, 2], [3, 4]])
     [1, 2, 3, 4]
     >>> flatten([[1, 2], [3, [4]], [5], 6])
     [1, 2, 3, [4], 5, 6]
@@ -31,9 +31,9 @@ def flattenDepth(array: Iterable[Union[V, Iterable[V]]], depth=1) -> List[V]:
     [1, 2, 3, [4], 5, 6]
     >>> flattenDepth([[1, 2], [3, [4]], [5]], depth=2)
     [1, 2, 3, 4, 5]
-    >>> flattenDeep([[1, 2], [[3], [[4]]], 5], depth=0)
-    [1, 2, 3, 4, 5]
-    depth=0 processes values as long as they are iterables and not strings
+    >>> flattenDepth([[1, 2], [[3], [[4]]], 5], depth=0)
+    [1, 2, 3, 4, 5]\n
+    :param depth: depth=0 processes values as long as they are iterables and not strings
     '''
     res = []
     folded = False

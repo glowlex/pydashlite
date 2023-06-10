@@ -8,9 +8,8 @@ def chunkDict(obj: Dict[K, V], size: int = 1) -> List[Dict[K, V]]:
     '''
     creates a list split into groups the length of size
     >>> chunkDict({'a': 1, 'b': 2, 'c': 3}, 2)
-    [{'a': 1, 'b': 2}, {'c': 3}]
-    :param size:
-        chunk size
+    [{'a': 1, 'b': 2}, {'c': 3}]\n
+    :param size: chunk size
     '''
     res = []
     if size < 1:

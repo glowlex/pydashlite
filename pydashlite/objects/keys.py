@@ -7,7 +7,7 @@ K = TypeVar('K', bound=Hashable)
 def keys(obj: Dict[K, V]) -> List[K]:
     '''
     returns list of keys
-    >>> invert({1: 'a', 2: 'b'})
-    ['a', 'b']
+    >>> keys({1: 'a', 2: 'b'})
+    [1, 2]
     '''
     return list(obj.keys())

@@ -1,3 +1,4 @@
+import math
 import pytest
 
 parametrize = pytest.mark.parametrize
@@ -16,3 +17,9 @@ class Object(object):
             except:
                 return False
         return True
+
+
+@pytest.fixture(autouse=True)
+def add_missing(doctest_namespace):
+    doctest_namespace["math"] = math
+    doctest_namespace['ClassObject'] = Object

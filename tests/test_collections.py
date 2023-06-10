@@ -3,23 +3,25 @@ from collections import namedtuple
 
 import pydashlite.collections as pdl
 
-from . import fixtures
-from .fixtures import parametrize, Object
+from . import conftest
+from .conftest import parametrize, Object
 
 
 @parametrize('case,expected', [
+    (({'a': {'b': 1, 'c': 2, 'd': 3}}, 'a.b'), {'a': {'b': 1}}),
     (({'a': 1, 'b': 2, 'c': 3}, 'a'), {'a': 1}),
     (({'a': 1, 'b': 2, 'c': 3}, 'a', 'b'), {'a': 1, 'b': 2}),
     (({'a': 1, 'b': 2, 'c': 3}, ['a', 'b']), {'a': 1, 'b': 2}),
     (({'a': 1, 'b': 2, 'c': 3}, ['a'], ['b']), {'a': 1, 'b': 2}),
     (([1, 2, 3],), {}),
     (([1, 2, 3], 0), {0: 1}),
-    ((fixtures.Object(a=1, b=2, c=3), 'a'), {'a': 1}),
+    ((conftest.Object(a=1, b=2, c=3), 'a'), {'a': 1}),
     (({'a': {'b': 1, 'c': 2, 'd': 3}}, 'a.b', 'a.d'), {'a': {'b': 1, 'd': 3}}),
     (({'a': [{'b': 1}, {'c': 2}, {'d': 3}]}, 'a[0]', 'a[2]'), {'a': [{'b': 1}, None, {'d': 3}]}),
-    (({'a': {'b': 1, 'c': 2, 'd': fixtures.Object(a=1, b=2, c=3)}}, ['a.d.m', 'd', 1]), {}),
+    (({'a': {'b': 1, 'c': 2, 'd': conftest.Object(a=1, b=2, c=3)}}, ['a.d.m', 'd', 1]), {}),
     (({'a': 1}, 'b.3'), {}),
-    (({'a': 1}, 'a', 2), {'a': 1})
+    (({'a': 1}, 'a', 2), {'a': 1}),
+    (({'a': {'b': 1, 'c': 2, 'd': 3}}, 'a..b'), {'a': {'b': 1}}),
 ])
 def test_pick(case, expected):
     assert pdl.pick(*case) == expected
@@ -80,7 +82,9 @@ def test_set_(case, expected):
     (([1, [2, 3]], [1, 1]), True, [1, [2]]),
     (([1, 2, 3], "[0][0]"), False, [1, 2, 3]),
     (([1, 2, 3], "[0][0][0]"), False, [1, 2, 3]),
-    (({'a': {'b': fixtures.Object(a=1, b=2, c=3)}}, ['a', 'b', 'a']), True, {'a': {'b': fixtures.Object(b=2, c=3)}}),
+    (({'a': {'b': conftest.Object(a=1, b=2, c=3)}}, ['a', 'b', 'a']), True, {'a': {'b': conftest.Object(b=2, c=3)}}),
+    (([], ''), False, []),
+    (([1], 'a'), False, [1]),
 ])
 def test_unset(case, expected, modValue):
     assert pdl.unset(*case) == expected
@@ -126,7 +130,8 @@ def test_head(case, expected):
     (({'a': 1, 'b': 2, 'c': 2, 'd': 3}, ), {1: [1], 2:[2, 2], 3:[3]}),
     (({'a': {1: 1}, 'b': {1: 2}, 'c': {1: 2}}, 1), {1: [{1: 1}], 2: [{1: 2}, {1: 2}]}),
     (({'a': [1], 'b': [2], 'c': [2, 3], 'd': [3]}, lambda x: x[0]), {1: [[1]], 2: [[2], [2, 3]], 3: [[3]]}),
-    (([{1: 1}, {1: 2}, {1: 2}], lambda x: x[1]), {1: [{1: 1}], 2: [{1: 2}, {1: 2}]})
+    (([{1: 1}, {1: 2}, {1: 2}], lambda x: x[1]), {1: [{1: 1}], 2: [{1: 2}, {1: 2}]}),
+    (([{1: 1}, {1: 2}, {1: 2}], 1), {1: [{1: 1}], 2: [{1: 2}, {1: 2}]}),
 ])
 def test_groupBy(case, expected):
     assert pdl.groupBy(*case) == expected

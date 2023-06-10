@@ -23,9 +23,8 @@ def chunk(obj, size: int = 1):
     >>> chunk([1, 2, 3, 4, 5], 2)
     [[1, 2], [3, 4], [5]]
     >>> chunk({'a': 1, 'b': 2, 'c': 3}, 2)
-    [{'a': 1, 'b': 2}, {'c': 3}]
-    :param size:
-        chunk size
+    [{'a': 1, 'b': 2}, {'c': 3}]\n
+    :param size: chunk size
     '''
     if isinstance(obj, dict):
         return chunkDict(obj, size)

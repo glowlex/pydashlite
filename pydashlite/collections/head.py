@@ -30,7 +30,7 @@ def head(iterable: Union[Iterable[T], Dict[T, Any]], default: Optional[Y] = None
     returns first element of iterable if exists otherwise return default
     >>> head([1, 2])
     1
-    >>> head([])
+    >>> print(head([]))
     None
     >>> head({"a": 1})
     'a'

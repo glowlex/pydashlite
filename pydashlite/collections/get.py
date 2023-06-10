@@ -11,9 +11,9 @@ def get(obj: Any, path: Union[Y, List[Y]], default=None, doDeepCopy=False) -> An
     returns the value at path of object
     >>> get({'one': {'two': {'three': 4}}}, ['one', 'two', 'three'])
     4
-    >>>get({"a": Class(b=5)}, 'a.b')
+    >>> get({"a": ClassObject(b=5)}, 'a.b')
     5
-    >>>get([1, 2, 3], 2)
+    >>> get([1, 2, 3], 2)
     3
     '''
     res = obj
