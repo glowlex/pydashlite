@@ -92,8 +92,8 @@ def test_uniq(case, expected):
 
 @parametrize('case,expected', [
     (([], lambda x: x), []),
-    (([1, 2, 1, 4, 1, 1], lambda x: x % 3), [1, 2]),
-    (([dict(a=1), dict(a=2), dict(a=1)], lambda x: {2: 2}), [dict(a=1)])
+    (([1, 2, 1, 5, 1, 1], lambda x: x % 3), [1, 2]),
+    (([dict(a=1), dict(a=2), dict(a=1)], lambda x: {2: 2}), [dict(a=1)]),
 ])
 def test_uniq_by(case, expected):
     assert pdl.uniqBy(*case) == expected
@@ -101,7 +101,7 @@ def test_uniq_by(case, expected):
 
 @parametrize('case,expected', [
     (([], lambda x: x), []),
-    (([1, 2, 1, 4, 1, 1], lambda x: x % 3), [1, 2]),
+    (([1, 5, 1, 1, 2], lambda x: x % 3), [1, 2]),
 ])
 def test_uniq_hash_by(case, expected):
     assert pdl.uniqHashBy(*case) == expected
