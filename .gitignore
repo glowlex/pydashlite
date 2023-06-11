@@ -16,3 +16,4 @@ test.py
 /*.egg-info
 /*.egg
 .eggs
+.tox
