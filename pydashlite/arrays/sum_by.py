@@ -13,5 +13,5 @@ def sumBy(array: Iterable[T], iteratee: Optional[Callable[[T], Num]] = None, sta
     6
     '''
     if iteratee is None:
-        return sum(array, start=start)
-    return sum([iteratee(y) for y in array], start=start)
+        return sum(array, start)
+    return sum([iteratee(y) for y in array], start)
