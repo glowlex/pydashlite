@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='pydashlite',
-    version='0.1.5',
+    version='0.2.0',
     description='Simple tools similar to pydash, but more specific and faster.',
     url='https://github.com/glowlex/pydashlite',
     author='glowlex',
@@ -17,6 +17,10 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
         'Topic :: Software Development :: Libraries',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Utilities',
